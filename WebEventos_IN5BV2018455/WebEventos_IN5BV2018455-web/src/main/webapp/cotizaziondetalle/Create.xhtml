@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCotizaziondetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCotizaziondetalleLabel_idcotizaziondetalle}" for="idcotizaziondetalle" />
+                    <h:inputText id="idcotizaziondetalle" value="#{cotizaziondetalleController.selected.idcotizaziondetalle}" title="#{bundle.CreateCotizaziondetalleTitle_idcotizaziondetalle}" required="true" requiredMessage="#{bundle.CreateCotizaziondetalleRequiredMessage_idcotizaziondetalle}"/>
+                    <h:outputLabel value="#{bundle.CreateCotizaziondetalleLabel_precantidad}" for="precantidad" />
+                    <h:inputText id="precantidad" value="#{cotizaziondetalleController.selected.precantidad}" title="#{bundle.CreateCotizaziondetalleTitle_precantidad}" />
+                    <h:outputLabel value="#{bundle.CreateCotizaziondetalleLabel_cotizacionesIdcotizacion}" for="cotizacionesIdcotizacion" />
+                    <h:selectOneMenu id="cotizacionesIdcotizacion" value="#{cotizaziondetalleController.selected.cotizacionesIdcotizacion}" title="#{bundle.CreateCotizaziondetalleTitle_cotizacionesIdcotizacion}" required="true" requiredMessage="#{bundle.CreateCotizaziondetalleRequiredMessage_cotizacionesIdcotizacion}">
+                        <f:selectItems value="#{cotizacionesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateCotizaziondetalleLabel_productosIdproductos}" for="productosIdproductos" />
+                    <h:selectOneMenu id="productosIdproductos" value="#{cotizaziondetalleController.selected.productosIdproductos}" title="#{bundle.CreateCotizaziondetalleTitle_productosIdproductos}" required="true" requiredMessage="#{bundle.CreateCotizaziondetalleRequiredMessage_productosIdproductos}">
+                        <f:selectItems value="#{productosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{cotizaziondetalleController.create}" value="#{bundle.CreateCotizaziondetalleSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{cotizaziondetalleController.prepareList}" value="#{bundle.CreateCotizaziondetalleShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCotizaziondetalleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

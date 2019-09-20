@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFacturaciondetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFacturaciondetalleLabel_idfacturaciondetalle}"/>
+                    <h:outputText value="#{facturaciondetalleController.selected.idfacturaciondetalle}" title="#{bundle.ViewFacturaciondetalleTitle_idfacturaciondetalle}"/>
+                    <h:outputText value="#{bundle.ViewFacturaciondetalleLabel_clientesIdclientes}"/>
+                    <h:outputText value="#{facturaciondetalleController.selected.clientesIdclientes}" title="#{bundle.ViewFacturaciondetalleTitle_clientesIdclientes}"/>
+                    <h:outputText value="#{bundle.ViewFacturaciondetalleLabel_productosIdproductos1}"/>
+                    <h:outputText value="#{facturaciondetalleController.selected.productosIdproductos1}" title="#{bundle.ViewFacturaciondetalleTitle_productosIdproductos1}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{facturaciondetalleController.destroyAndView}" value="#{bundle.ViewFacturaciondetalleDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewFacturaciondetalleEditLink}"/>
+                <br />
+                <h:commandLink action="#{facturaciondetalleController.prepareCreate}" value="#{bundle.ViewFacturaciondetalleCreateLink}" />
+                <br />
+                <h:commandLink action="#{facturaciondetalleController.prepareList}" value="#{bundle.ViewFacturaciondetalleShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFacturaciondetalleIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSucursalesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSucursalesLabel_idsucursales}" for="idsucursales" />
+                    <h:inputText id="idsucursales" value="#{sucursalesController.selected.idsucursales}" title="#{bundle.CreateSucursalesTitle_idsucursales}" required="true" requiredMessage="#{bundle.CreateSucursalesRequiredMessage_idsucursales}"/>
+                    <h:outputLabel value="#{bundle.CreateSucursalesLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{sucursalesController.selected.nombre}" title="#{bundle.CreateSucursalesTitle_nombre}" />
+                    <h:outputLabel value="#{bundle.CreateSucursalesLabel_telefono}" for="telefono" />
+                    <h:inputText id="telefono" value="#{sucursalesController.selected.telefono}" title="#{bundle.CreateSucursalesTitle_telefono}" />
+                    <h:outputLabel value="#{bundle.CreateSucursalesLabel_direccion}" for="direccion" />
+                    <h:inputText id="direccion" value="#{sucursalesController.selected.direccion}" title="#{bundle.CreateSucursalesTitle_direccion}" />
+                    <h:outputLabel value="#{bundle.CreateSucursalesLabel_areasIdareas}" for="areasIdareas" />
+                    <h:selectOneMenu id="areasIdareas" value="#{sucursalesController.selected.areasIdareas}" title="#{bundle.CreateSucursalesTitle_areasIdareas}" required="true" requiredMessage="#{bundle.CreateSucursalesRequiredMessage_areasIdareas}">
+                        <f:selectItems value="#{areasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{sucursalesController.create}" value="#{bundle.CreateSucursalesSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{sucursalesController.prepareList}" value="#{bundle.CreateSucursalesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateSucursalesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

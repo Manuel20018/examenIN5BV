@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFacturacionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFacturacionLabel_idnumerodocumento}" for="idnumerodocumento" />
+                    <h:inputText id="idnumerodocumento" value="#{facturacionController.selected.idnumerodocumento}" title="#{bundle.EditFacturacionTitle_idnumerodocumento}" required="true" requiredMessage="#{bundle.EditFacturacionRequiredMessage_idnumerodocumento}"/>
+                    <h:outputLabel value="#{bundle.EditFacturacionLabel_fechadocumento}" for="fechadocumento" />
+                    <h:inputText id="fechadocumento" value="#{facturacionController.selected.fechadocumento}" title="#{bundle.EditFacturacionTitle_fechadocumento}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditFacturacionLabel_fechaentrega}" for="fechaentrega" />
+                    <h:inputText id="fechaentrega" value="#{facturacionController.selected.fechaentrega}" title="#{bundle.EditFacturacionTitle_fechaentrega}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditFacturacionLabel_facturacioncol}" for="facturacioncol" />
+                    <h:inputText id="facturacioncol" value="#{facturacionController.selected.facturacioncol}" title="#{bundle.EditFacturacionTitle_facturacioncol}" />
+                    <h:outputLabel value="#{bundle.EditFacturacionLabel_clientesIdclientes}" for="clientesIdclientes" />
+                    <h:selectOneMenu id="clientesIdclientes" value="#{facturacionController.selected.clientesIdclientes}" title="#{bundle.EditFacturacionTitle_clientesIdclientes}" required="true" requiredMessage="#{bundle.EditFacturacionRequiredMessage_clientesIdclientes}">
+                        <f:selectItems value="#{clientesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFacturacionLabel_sucursalesIdsucursales}" for="sucursalesIdsucursales" />
+                    <h:selectOneMenu id="sucursalesIdsucursales" value="#{facturacionController.selected.sucursalesIdsucursales}" title="#{bundle.EditFacturacionTitle_sucursalesIdsucursales}" required="true" requiredMessage="#{bundle.EditFacturacionRequiredMessage_sucursalesIdsucursales}">
+                        <f:selectItems value="#{sucursalesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{facturacionController.update}" value="#{bundle.EditFacturacionSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFacturacionViewLink}"/>
+                <br />
+                <h:commandLink action="#{facturacionController.prepareList}" value="#{bundle.EditFacturacionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFacturacionIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

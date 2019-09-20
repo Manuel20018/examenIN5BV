@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewReservacionesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewReservacionesLabel_idreservacion}"/>
+                    <h:outputText value="#{reservacionesController.selected.idreservacion}" title="#{bundle.ViewReservacionesTitle_idreservacion}"/>
+                    <h:outputText value="#{bundle.ViewReservacionesLabel_fechainicial}"/>
+                    <h:outputText value="#{reservacionesController.selected.fechainicial}" title="#{bundle.ViewReservacionesTitle_fechainicial}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewReservacionesLabel_fechafinal}"/>
+                    <h:outputText value="#{reservacionesController.selected.fechafinal}" title="#{bundle.ViewReservacionesTitle_fechafinal}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewReservacionesLabel_clientesIdclientes}"/>
+                    <h:outputText value="#{reservacionesController.selected.clientesIdclientes}" title="#{bundle.ViewReservacionesTitle_clientesIdclientes}"/>
+                    <h:outputText value="#{bundle.ViewReservacionesLabel_sucursalesIdsucursales}"/>
+                    <h:outputText value="#{reservacionesController.selected.sucursalesIdsucursales}" title="#{bundle.ViewReservacionesTitle_sucursalesIdsucursales}"/>
+                    <h:outputText value="#{bundle.ViewReservacionesLabel_tipoeventoIdtipoevento}"/>
+                    <h:outputText value="#{reservacionesController.selected.tipoeventoIdtipoevento}" title="#{bundle.ViewReservacionesTitle_tipoeventoIdtipoevento}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{reservacionesController.destroyAndView}" value="#{bundle.ViewReservacionesDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewReservacionesEditLink}"/>
+                <br />
+                <h:commandLink action="#{reservacionesController.prepareCreate}" value="#{bundle.ViewReservacionesCreateLink}" />
+                <br />
+                <h:commandLink action="#{reservacionesController.prepareList}" value="#{bundle.ViewReservacionesShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewReservacionesIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

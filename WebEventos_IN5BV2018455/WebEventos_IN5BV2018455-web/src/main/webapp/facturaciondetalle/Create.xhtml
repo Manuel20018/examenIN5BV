@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateFacturaciondetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateFacturaciondetalleLabel_idfacturaciondetalle}" for="idfacturaciondetalle" />
+                    <h:inputText id="idfacturaciondetalle" value="#{facturaciondetalleController.selected.idfacturaciondetalle}" title="#{bundle.CreateFacturaciondetalleTitle_idfacturaciondetalle}" required="true" requiredMessage="#{bundle.CreateFacturaciondetalleRequiredMessage_idfacturaciondetalle}"/>
+                    <h:outputLabel value="#{bundle.CreateFacturaciondetalleLabel_clientesIdclientes}" for="clientesIdclientes" />
+                    <h:selectOneMenu id="clientesIdclientes" value="#{facturaciondetalleController.selected.clientesIdclientes}" title="#{bundle.CreateFacturaciondetalleTitle_clientesIdclientes}" required="true" requiredMessage="#{bundle.CreateFacturaciondetalleRequiredMessage_clientesIdclientes}">
+                        <f:selectItems value="#{clientesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateFacturaciondetalleLabel_productosIdproductos1}" for="productosIdproductos1" />
+                    <h:selectOneMenu id="productosIdproductos1" value="#{facturaciondetalleController.selected.productosIdproductos1}" title="#{bundle.CreateFacturaciondetalleTitle_productosIdproductos1}" required="true" requiredMessage="#{bundle.CreateFacturaciondetalleRequiredMessage_productosIdproductos1}">
+                        <f:selectItems value="#{productosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{facturaciondetalleController.create}" value="#{bundle.CreateFacturaciondetalleSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{facturaciondetalleController.prepareList}" value="#{bundle.CreateFacturaciondetalleShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateFacturaciondetalleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

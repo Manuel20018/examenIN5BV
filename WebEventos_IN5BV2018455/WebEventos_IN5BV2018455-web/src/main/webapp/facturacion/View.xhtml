@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFacturacionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFacturacionLabel_idnumerodocumento}"/>
+                    <h:outputText value="#{facturacionController.selected.idnumerodocumento}" title="#{bundle.ViewFacturacionTitle_idnumerodocumento}"/>
+                    <h:outputText value="#{bundle.ViewFacturacionLabel_fechadocumento}"/>
+                    <h:outputText value="#{facturacionController.selected.fechadocumento}" title="#{bundle.ViewFacturacionTitle_fechadocumento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFacturacionLabel_fechaentrega}"/>
+                    <h:outputText value="#{facturacionController.selected.fechaentrega}" title="#{bundle.ViewFacturacionTitle_fechaentrega}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFacturacionLabel_facturacioncol}"/>
+                    <h:outputText value="#{facturacionController.selected.facturacioncol}" title="#{bundle.ViewFacturacionTitle_facturacioncol}"/>
+                    <h:outputText value="#{bundle.ViewFacturacionLabel_clientesIdclientes}"/>
+                    <h:outputText value="#{facturacionController.selected.clientesIdclientes}" title="#{bundle.ViewFacturacionTitle_clientesIdclientes}"/>
+                    <h:outputText value="#{bundle.ViewFacturacionLabel_sucursalesIdsucursales}"/>
+                    <h:outputText value="#{facturacionController.selected.sucursalesIdsucursales}" title="#{bundle.ViewFacturacionTitle_sucursalesIdsucursales}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{facturacionController.destroyAndView}" value="#{bundle.ViewFacturacionDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewFacturacionEditLink}"/>
+                <br />
+                <h:commandLink action="#{facturacionController.prepareCreate}" value="#{bundle.ViewFacturacionCreateLink}" />
+                <br />
+                <h:commandLink action="#{facturacionController.prepareList}" value="#{bundle.ViewFacturacionShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFacturacionIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

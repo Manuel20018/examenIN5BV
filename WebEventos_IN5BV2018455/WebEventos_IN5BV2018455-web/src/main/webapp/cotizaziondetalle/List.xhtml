@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCotizaziondetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCotizaziondetalleEmpty}" rendered="#{cotizaziondetalleController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{cotizaziondetalleController.items.rowCount > 0}">
+                    <h:outputText value="#{cotizaziondetalleController.pagination.pageFirstItem + 1}..#{cotizaziondetalleController.pagination.pageLastItem + 1}/#{cotizaziondetalleController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{cotizaziondetalleController.previous}" value="#{bundle.Previous} #{cotizaziondetalleController.pagination.pageSize}" rendered="#{cotizaziondetalleController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{cotizaziondetalleController.next}" value="#{bundle.Next} #{cotizaziondetalleController.pagination.pageSize}" rendered="#{cotizaziondetalleController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{cotizaziondetalleController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCotizaziondetalleTitle_idcotizaziondetalle}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idcotizaziondetalle}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCotizaziondetalleTitle_precantidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.precantidad}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCotizaziondetalleTitle_cotizacionesIdcotizacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cotizacionesIdcotizacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCotizaziondetalleTitle_productosIdproductos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.productosIdproductos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{cotizaziondetalleController.prepareView}" value="#{bundle.ListCotizaziondetalleViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{cotizaziondetalleController.prepareEdit}" value="#{bundle.ListCotizaziondetalleEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{cotizaziondetalleController.destroy}" value="#{bundle.ListCotizaziondetalleDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{cotizaziondetalleController.prepareCreate}" value="#{bundle.ListCotizaziondetalleCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListCotizaziondetalleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

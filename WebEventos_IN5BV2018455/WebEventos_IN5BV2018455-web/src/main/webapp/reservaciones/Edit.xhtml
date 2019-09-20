@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditReservacionesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditReservacionesLabel_idreservacion}" for="idreservacion" />
+                    <h:inputText id="idreservacion" value="#{reservacionesController.selected.idreservacion}" title="#{bundle.EditReservacionesTitle_idreservacion}" required="true" requiredMessage="#{bundle.EditReservacionesRequiredMessage_idreservacion}"/>
+                    <h:outputLabel value="#{bundle.EditReservacionesLabel_fechainicial}" for="fechainicial" />
+                    <h:inputText id="fechainicial" value="#{reservacionesController.selected.fechainicial}" title="#{bundle.EditReservacionesTitle_fechainicial}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditReservacionesLabel_fechafinal}" for="fechafinal" />
+                    <h:inputText id="fechafinal" value="#{reservacionesController.selected.fechafinal}" title="#{bundle.EditReservacionesTitle_fechafinal}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditReservacionesLabel_clientesIdclientes}" for="clientesIdclientes" />
+                    <h:selectOneMenu id="clientesIdclientes" value="#{reservacionesController.selected.clientesIdclientes}" title="#{bundle.EditReservacionesTitle_clientesIdclientes}" required="true" requiredMessage="#{bundle.EditReservacionesRequiredMessage_clientesIdclientes}">
+                        <f:selectItems value="#{clientesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditReservacionesLabel_sucursalesIdsucursales}" for="sucursalesIdsucursales" />
+                    <h:selectOneMenu id="sucursalesIdsucursales" value="#{reservacionesController.selected.sucursalesIdsucursales}" title="#{bundle.EditReservacionesTitle_sucursalesIdsucursales}" required="true" requiredMessage="#{bundle.EditReservacionesRequiredMessage_sucursalesIdsucursales}">
+                        <f:selectItems value="#{sucursalesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditReservacionesLabel_tipoeventoIdtipoevento}" for="tipoeventoIdtipoevento" />
+                    <h:selectOneMenu id="tipoeventoIdtipoevento" value="#{reservacionesController.selected.tipoeventoIdtipoevento}" title="#{bundle.EditReservacionesTitle_tipoeventoIdtipoevento}" required="true" requiredMessage="#{bundle.EditReservacionesRequiredMessage_tipoeventoIdtipoevento}">
+                        <f:selectItems value="#{tipoeventoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{reservacionesController.update}" value="#{bundle.EditReservacionesSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditReservacionesViewLink}"/>
+                <br />
+                <h:commandLink action="#{reservacionesController.prepareList}" value="#{bundle.EditReservacionesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditReservacionesIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
